@@ -40,6 +40,10 @@ module YahooContentAnalysis
       YahooContentAnalysis::Response.new(response)
     end
 
+    def get_topics(content, opts={})
+      analyze(content, opts).entities.map{|x|x[:name]}
+    end
+
     def query(content)
       "SELECT * FROM contentanalysis.analyze WHERE related_entities = \"true\" and #{condition(content)}"
     end

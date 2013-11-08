@@ -76,7 +76,7 @@ module YahooContentAnalysis
       return nil unless (h && h['type'])
       type = h['type'].is_a?(Array) ? h['type'].first : h['type']
       content = (type['content'] || '').split('/')
-      content = (content[1] || content[0]).remove_formatting.titleize
+      content = (content[1] || content[0]).try(:remove_formatting).try(:titleize)
       content.blank? ? nil : content
     end
 
